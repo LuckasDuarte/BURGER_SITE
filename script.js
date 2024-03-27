@@ -235,7 +235,7 @@ function checkOpen(){
     const data = new Date();
     const hora = data.getHours();
   
-    return hora >= 16 && hora < 22; // True = aberto
+    return hora >= 0 && hora < 23; // True = aberto
 }
 
 const spanDate = document.getElementById("date-span")
