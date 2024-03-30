@@ -37,7 +37,7 @@ Este projeto consiste em um site de pedidos online para uma lanchonete fictícia
 - O site possui integração com o WhatsApp para finalização dos pedidos.
 - O horário de funcionamento é dinâmico e indica se a lanchonete está aberta ou fechada com base no horário atual.
 
-O horário pode ser alterado no seguinte trecho do arquivo: [script.js](https://github.com/LuckasDuarte/BURGER_SITE/blob/main/script.js)
+O horário pode ser alterado no seguinte trecho do arquivo: [script.js](https://github.com/LuckasDuarte/BURGER_SITE/blob/main/script.js) linha 271
 
 ![Codigo](https://github.com/LuckasDuarte/BURGER_SITE/blob/main/assets/JS_HORA.png)
 
