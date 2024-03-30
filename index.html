@@ -299,6 +299,7 @@
             type="text"
             placeholder="Digite seu endereço"
             id="adress"
+            autocomplete="off"
             class="w-full border-2 p-1 rounded my-1"
             />
             <p class="font-bold mt-4">Forma de pagamento:</p>
@@ -313,11 +314,13 @@
             <div id="troco-section" style="display: none;">
                 <p class="font-bold mt-4">Insira o valor:</p>
                 <input
-                    type="number"
-                    placeholder="Insira o valor"
+                    type="text"
+                    placeholder="R$ 0,00"
                     id="troco"
                     class="w-full border-2 p-1 rounded my-1 appearance-none"
+                    autocomplete="off"
                 />
+                
             </div>
             <style>
                 /* Estilo para remover as setas do input do tipo number */
@@ -358,6 +361,13 @@
    <!-- FIM FOOTER -->
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#troco').mask("R$ ###0,00", {reverse: false});
+    });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

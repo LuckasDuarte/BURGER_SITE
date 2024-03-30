@@ -10,13 +10,12 @@ const cartCount = document.getElementById("cart-count")
 const adressInput = document.getElementById("adress")
 const adressWarning = document.getElementById("adress-warn")
 
-// teste
-
 
 // Obtenha a referência para o seletor de pagamento e o campo de troco
 const paymentMethodSelect = document.getElementById("payment-method");
 const trocoSection = document.getElementById("troco-section");
 const trocoValue = document.getElementById("troco");
+
 
 // Adicione um ouvinte de evento para o seletor de pagamento
 paymentMethodSelect.addEventListener("change", function() {
@@ -30,7 +29,6 @@ paymentMethodSelect.addEventListener("change", function() {
     }
 });
 
-// FIM TESTE
 
 let cart = [];
 
@@ -77,12 +75,36 @@ function addToCart(name, price){
         // Se o item ja existe no carrinho aumenta a quantidade + 1
         existingItem.qtd += 1
 
+        Toastify({
+            text: `${name} foi adicionado no carrinho!`,
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "#005b32",
+            },
+        }).showToast();
+
     } else{
         cart.push({
             name,
             price,
             qtd: 1,
         });
+
+        Toastify({
+            text: `${name} foi adicionado no carrinho!`,
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "#005b32",
+            },
+        }).showToast();
     }
 
     updateCartModal()
@@ -130,6 +152,18 @@ cartItensContainer.addEventListener("click", function(event){
         const name = event.target.getAttribute("data-name")
 
         removeItemCart(name);
+        Toastify({
+            text: `${name} foi removido do carrinho!`,
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "#ef4444",
+            },
+        }).showToast();
+
     }
 })
 
@@ -208,7 +242,10 @@ Preço: R$ ${item.price.toFixed(2)}\n\n`
     const valorSelecionado = paymentMethodSelect.options[paymentMethodSelect.selectedIndex].value;
 
     if(valorSelecionado === "Dinheiro"){
-        const message = encodeURI(`Olá! Gostaria de fazer um pedido:\n\n${cartItens}Endereço: ${adressInput.value}\nTotal: R$ ${total.toFixed(2)}\nForma de Pagamento: *${valorSelecionado}*\nValor Pagamento: R$ *${trocoValue.value}*`)
+
+        
+
+        const message = encodeURI(`Olá! Gostaria de fazer um pedido:\n\n${cartItens}Endereço: ${adressInput.value}\nTotal: R$ ${total.toFixed(2)}\nForma de Pagamento: *${valorSelecionado}*\nValor Pagamento: *${trocoValue.value}*`)
 
         const phone = "12997918975"
 
@@ -220,13 +257,13 @@ Preço: R$ ${item.price.toFixed(2)}\n\n`
     
         window.open(`https://wa.me/${phone}?text=${message}`,"_blank")
     }
-
-   
-
     cart = []
+    trocoValue.value = ""
     adressInput.value = ""
-    updateCartModal()
+    cartModal.style.display = "none"
 
+    updateCartModal()
+    
 })
 
 
